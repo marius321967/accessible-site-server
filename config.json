@@ -1,0 +1,8 @@
+{
+    "jwt_secret": "changeme",
+    "database": {
+        "host": "localhost",
+        "port": "27017",
+        "name": "accessible"
+    }
+}
