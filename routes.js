@@ -10,6 +10,6 @@ module.exports = app => {
     app.get('/me', protected_user, auth.me);
     app.post('/login', auth.login);
     app.post('/register', auth.register);
-    app.get('/admin/products', protected_admin, admin.products.all);
+    app.get('/products', protected_admin, admin.products.all);
     app.get('/users', protected_admin, admin.users.all);
 }
