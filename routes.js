@@ -1,5 +1,6 @@
 const auth = require('./routes/auth');
 const admin = require('./routes/admin');
+const user = require('./routes/user');
 const protected_admin = require('./middleware/protected_admin');
 const protected_user = require('./middleware/protected_user');
 
@@ -27,6 +28,15 @@ module.exports = app => {
     app.get('/categories/:id', admin.categories.view);
     app.post('/categories/:id', protected_admin, admin.categories.update);
     app.get('/category/:id/products', admin.categories.products.get_all);
+
+    app.get('/cart', protected_user, user.cart.get_all);
+    app.post('/cart', protected_user, user.cart.add);
+    app.post('/cart/:itemId/amount', protected_user, user.cart.update_amount);
+    app.post('/cart/:itemId/delete', protected_user, user.cart.delete);
+
+    app.get('/admin/orders', protected_admin, user.order.get_all);
+    app.get('/orders', protected_user, user.order.get_by_user);
+    app.post('/orders', protected_user, user.order.create);
     
     app.get('/users', protected_admin, admin.users.all);
 }
